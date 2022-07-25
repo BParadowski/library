@@ -9,19 +9,34 @@
     <title>Library</title>
 </head>
 <body>
+    <div class="popup">
+        <form action="#" method="post" class="form">
+            <legend>Create new book</legend>
+            <label for="title" class="form__label"></label>
+            <input id="title" name="title" type="text" class="form__input">
+            <label for="author" class="form__label"></label>
+            <input id="author" name="author" type="text" class="form__input">
+            <label for="pages" class="form__label"></label>
+            <input id="pages" name="pages" type="number" class="form__input">
+            <label for="isRead" class="form__label"></label>
+            <input id="isRead"  name="isRead" type="checkbox" class="form__input">
+            <button class="form__button">Add to collection</button>
+        </form>
+    </div>
     <div class="layout">
         <header class="header">Your personal bookshelf (on the internet)</header>
         <div class="bookshelf">
-            <div class="book">
+            <div class="book" id="book_100">
                 <h4 class="book__title">Rabucabu napuremwu</h4>
                 <p class="book__author">by Utrymingur</p>
                 <p class="book__pages">Pages: 259</p>
+                <div class="book__status" data-id="status_100"></div>
                 <div class="book__buttons">
                     <label class="book__switch">
-                        <input type="checkbox">
+                        <input type="checkbox" data-id="100">
                         <span class="book__slider"></span>
                     </label>
-                    <button class="book__delete"></button>
+                    <button class="book__delete" data-id="100"></button>
                 </div>
             </div>
         </div>

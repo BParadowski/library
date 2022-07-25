@@ -1,5 +1,22 @@
 let myLibrary = [];
 const bookshelf = document.querySelector('.bookshelf');
+const formButton = document.querySelector('.form__button');
+const title = document.getElementById('title');
+const author = document.getElementById('author');
+const pages = document.getElementById('pages');
+const isRead = document.getElementById('isRead');
+
+formButton.addEventListener('click', addToColection)
+
+function addToColection(e){
+    e.preventDefault();
+    addBookToLibrary(title.value, author.value, parseInt(pages.value), isRead.checked );
+    displayNewBook();
+    title.value = '';
+    author.value = '';
+    pages.value = '';
+    isRead.checked = false;
+}
 
 function Book(title, author, pages, isRead){
     this.title = title;
@@ -20,46 +37,63 @@ function addBookToLibrary(title, author, pages, isRead){
 function displayBook(i){
 
     if (myLibrary[i] !== undefined){
-
     const book = myLibrary[i];
+
     let newBook = document.createElement('div');
         newBook.classList.add("book");
 //book elements
         let newTitle = document.createElement('h4')
         newTitle.classList.add('book__title');
         newTitle.textContent = book.title;
+
         let newAuthor = document.createElement('p');
         newAuthor.classList.add('book__author');
         newAuthor.textContent = `by ${book.author}`;
+
         let newPages = document.createElement('p');
         newPages.classList.add('book__pages');
         newPages.textContent = `Pages: ${book.pages}`;
+
+        let newStatus = document.createElement('div');
+        newStatus.classList.add('book_status');
+        newStatus.dataset.id = `status_${i}`
+        newStatus.textContent = book.isRead ? 'Finished' :'Not read';
+
         let buttons = document.createElement('div');
         buttons.classList.add('book__buttons');
 // buttons
-        let newlabel = document.createElement('label');
-        newlabel.classList.add('book__switch');
+        let newLabel = document.createElement('label');
+        newLabel.classList.add('book__switch');
+
         let newCheckbox = document.createElement('input');
-        newCheckbox.type = 'checkbox';
+        newCheckbox.type = 'checkbox';     
         newCheckbox.checked = book.isRead;
+
         let newSlider = document.createElement('span');
         newSlider.classList.add('book__slider');
 
         let newButton = document.createElement('button');
         newButton.classList.add('book__delete');
 // putting it together
+        newLabel.dataset.id = `${i}`;
 
-        newlabel.appendChild(newCheckbox);
-        newlabel.appendChild(newSlider);
+        newLabel.appendChild(newCheckbox);
+        newLabel.appendChild(newSlider);
 
-        buttons.appendChild(newlabel);
+        newCheckbox.dataset.id = `${i}`
+        newCheckbox.addEventListener('click', updateReadStatus)
+
+        buttons.appendChild(newLabel);
         buttons.appendChild(newButton);
+
+ 
         newButton.dataset.id = `${i}`;
         newButton.addEventListener('click', removeBook)
 
         newBook.appendChild(newTitle);
         newBook.appendChild(newAuthor);
         newBook.appendChild(newPages);
+        newBook.appendChild(newStatus);
         newBook.appendChild(buttons);
 
         bookshelf.appendChild(newBook);
@@ -85,8 +119,15 @@ function removeBook(e){
     bookToDelete.remove()
 }
 
+function updateReadStatus(e){
+    let status = myLibrary[this.dataset.id].isRead;
+    myLibrary[this.dataset.id].isRead = status ? false : true;
+    let statusDisplay = document.querySelector(`div[data-id="status_${this.dataset.id}"]`);
+    statusDisplay.textContent = statusDisplay.textContent === 'Finished' ? 'Not read' : 'Finished';
+}
+
 addBookToLibrary("The hobbit", "J R R Tolkien", 255, true);
-addBookToLibrary("The hobbit", "J R R Tolkien", 255, true);
+addBookToLibrary("The hobbit", "J R ojuR Tolkien", 255, true);
 addBookToLibrary("The hobbit", "J R R Tolkien", 255, true);
 
 displayLibrary();
