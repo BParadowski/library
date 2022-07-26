@@ -12,6 +12,7 @@
     --secondary: #64748b;
     --accent:#fdba74;
     --accent-red: #ef4444;
+    --accent-green: #64748b;
     --text-light: #f8fafc;
 }
 
@@ -123,6 +124,10 @@ body, html{
 
         &:hover{
             outline: 2px solid var(--accent);
+        }
+
+        &.green{
+            background-color: var(--accent-green);
         }
     }
 

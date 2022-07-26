@@ -11,6 +11,7 @@
   --secondary: #64748b;
   --accent:#fdba74;
   --accent-red: #ef4444;
+  --accent-green: #64748b;
   --text-light: #f8fafc;
 }
 
@@ -113,6 +114,9 @@ body, html {
 }
 .book__mark:hover {
   outline: 2px solid var(--accent);
+}
+.book__mark.green {
+  background-color: var(--accent-green);
 }
 .book:hover {
   outline: 2px solid var(--accent);

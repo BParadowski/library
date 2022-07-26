@@ -126,6 +126,9 @@ function displayBook(i){
 
         let bookMark = document.createElement('div');
         bookMark.classList.add('book__mark');
+        if (book.isRead){
+            bookMark.classList.add('green');
+        }
         newBook.appendChild(bookMark);
     }
 }
@@ -153,6 +156,9 @@ function updateReadStatus(e){
     myLibrary[this.dataset.id].isRead = status ? false : true;
     let statusDisplay = document.querySelector(`div[data-id="status_${this.dataset.id}"]`);
     statusDisplay.textContent = statusDisplay.textContent === 'Finished' ? 'Not read' : 'Finished';
+    const bookTemp = document.getElementById(`book_${this.dataset.id}`);
+    let bookMark = bookTemp.querySelector("div.book__mark");
+    bookMark.classList.toggle('green');
 }
 
 addBookToLibrary("The hobbit", "J. R. R. Tolkien", 255, true);
