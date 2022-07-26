@@ -10,23 +10,28 @@
 </head>
 <body>
     <div class="popup">
-        <form action="#" method="post" class="form">
-            <legend>Create new book</legend>
-            <label for="title" class="form__label"></label>
-            <input id="title" name="title" type="text" class="form__input">
-            <label for="author" class="form__label"></label>
-            <input id="author" name="author" type="text" class="form__input">
-            <label for="pages" class="form__label"></label>
-            <input id="pages" name="pages" type="number" class="form__input">
-            <label for="isRead" class="form__label"></label>
-            <input id="isRead"  name="isRead" type="checkbox" class="form__input">
+        <form action="#" method="get" class="form">
+            <legend>Create a new book</legend>
+            <div class="form__container">
+                <label for="title" class="form__label">Title:</label>
+                <input id="title" name="title" type="text" class="form__input">
+                <label for="author" class="form__label">Author:</label>
+                <input id="author" name="author" type="text" class="form__input">
+                <label for="pages" class="form__label">Pages:</label>
+                <input id="pages" name="pages" type="text" class="form__input" pattern="/\d+/">
+                <label for="isRead" class="form__label">Finished:</label>
+                <input id="isRead"  name="isRead" type="checkbox" class="form__input">
+            </div>
             <button class="form__button">Add to collection</button>
+            <div class="form__close"></div>
         </form>
     </div>
     <div class="layout">
-        <header class="header">Your personal bookshelf (on the internet)</header>
+        <header class="header">Your personal bookshelf
+            <button class="header__add">New book</button>
+        </header>
         <div class="bookshelf">
-            <div class="book" id="book_100">
+            <!-- <div class="book" id="book_100">
                 <h4 class="book__title">Rabucabu napuremwu</h4>
                 <p class="book__author">by Utrymingur</p>
                 <p class="book__pages">Pages: 259</p>
@@ -38,7 +43,8 @@
                     </label>
                     <button class="book__delete" data-id="100"></button>
                 </div>
-            </div>
+                <div class="book__mark"></div>
+            </div> -->
         </div>
     </div>
 </body>

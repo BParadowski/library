@@ -5,8 +5,18 @@ const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
 const isRead = document.getElementById('isRead');
+const newBookButton = document.querySelector('button.header__add');
+const popup = document.querySelector('.popup')
+const closeForm = document.querySelector('.form__close');
 
+
+newBookButton.addEventListener('click', function(e){
+    popup.classList.add('visible');
+} )
 formButton.addEventListener('click', addToColection)
+closeForm.addEventListener('click', function(e){
+    popup.classList.remove('visible');
+} )
 
 function addToColection(e){
     e.preventDefault();
@@ -18,10 +28,25 @@ function addToColection(e){
     isRead.checked = false;
 }
 
-function Book(title, author, pages, isRead){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
+function Book(title="Untitled", author="Unknown", pages="unknown", isRead="false"){
+    if (title){
+        this.title = title;
+    }
+    else{
+        this.title = 'Untitled';
+    }
+    if (author){
+        this.author = author;
+    }
+    else{
+        this.author = 'Unknown';
+    }
+    if (pages){
+        this.pages = pages;
+    }
+    else{
+        this.pages = 'unknown'
+    }
     this.isRead = isRead; 
 }
 
@@ -31,7 +56,7 @@ Book.prototype.info = function(){
 }   
 
 function addBookToLibrary(title, author, pages, isRead){
-    myLibrary.push(new Book(title, author, pages, isRead));
+        myLibrary.push(new Book(title, author, pages, isRead));
 }
 
 function displayBook(i){
@@ -98,6 +123,10 @@ function displayBook(i){
 
         bookshelf.appendChild(newBook);
         newBook.id = `book_${i}`;
+
+        let bookMark = document.createElement('div');
+        bookMark.classList.add('book__mark');
+        newBook.appendChild(bookMark);
     }
 }
 
@@ -126,8 +155,9 @@ function updateReadStatus(e){
     statusDisplay.textContent = statusDisplay.textContent === 'Finished' ? 'Not read' : 'Finished';
 }
 
-addBookToLibrary("The hobbit", "J R R Tolkien", 255, true);
-addBookToLibrary("The hobbit", "J R ojuR Tolkien", 255, true);
-addBookToLibrary("The hobbit", "J R R Tolkien", 255, true);
+addBookToLibrary("The hobbit", "J. R. R. Tolkien", 255, true);
+addBookToLibrary("Alice in Wonderland", "Lewis Carroll", 472, true);
+addBookToLibrary("Heart of Darkness", "Joseph Conrad", 170, false);
+addBookToLibrary("Dune", "Frank Herbert", 891, false);
 
 displayLibrary();
