@@ -149,10 +149,15 @@ body, html {
   font-weight: 700;
   margin-bottom: 40px;
 }
+.form__input {
+  max-width: 200px;
+}
 .form__container {
   display: grid;
   grid-template: auto/auto 1fr;
-  gap: 40px;
+  row-gap: 40px;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
 }
 .form__button {
   margin-top: auto;

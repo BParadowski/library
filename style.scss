@@ -167,10 +167,15 @@ body, html{
         margin-bottom: 40px;
     }
 
+    &__input{
+        max-width: 200px;
+    }
+
     &__container{
         display: grid;
         grid-template: auto/ auto 1fr;
-        gap: 40px;
+        row-gap: 40px;
+        column-gap: 10px;
     }
 
     &__button{

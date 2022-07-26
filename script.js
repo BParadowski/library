@@ -159,5 +159,6 @@ addBookToLibrary("The hobbit", "J. R. R. Tolkien", 255, true);
 addBookToLibrary("Alice in Wonderland", "Lewis Carroll", 472, true);
 addBookToLibrary("Heart of Darkness", "Joseph Conrad", 170, false);
 addBookToLibrary("Dune", "Frank Herbert", 891, false);
+addBookToLibrary("The Magus", "John Fowles", 678, true);
 
 displayLibrary();
