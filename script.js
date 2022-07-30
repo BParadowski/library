@@ -28,32 +28,19 @@ function addToColection(e){
     isRead.checked = false;
 }
 
-function Book(title="Untitled", author="Unknown", pages="unknown", isRead="false"){
-    if (title){
-        this.title = title;
-    }
-    else{
-        this.title = 'Untitled';
-    }
-    if (author){
-        this.author = author;
-    }
-    else{
-        this.author = 'Unknown';
-    }
-    if (pages){
-        this.pages = pages;
-    }
-    else{
-        this.pages = 'unknown'
-    }
-    this.isRead = isRead; 
-}
+class Book{
+    constructor(title, author, pages, isRead = false){
+        this.title = title ? title : "Untitled";
+        this.author = author ? author : "Anonymous";
+        this.pages = pages ? pages : "Unknown";
+        this.isRead = isRead;
+    };
 
-Book.prototype.info = function(){
-    let finished = this.isRead === true ? "finished" : "not read yet";
+    info() {
+        let finished = this.isRead  ? "finished" : "not read yet";
     return `${this.title} by ${this.author}, ${this.pages} pages, ${finished}.`;
-}   
+    };
+}
 
 function addBookToLibrary(title, author, pages, isRead){
         myLibrary.push(new Book(title, author, pages, isRead));
